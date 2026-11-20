@@ -1,13 +1,1 @@
-@extends('layouts.app')
-
-@section('title', 'Edit Course')
-
-@section('content')
-    <h1 class="h3 mb-3">Edit Course</h1>
-
-    <form action="{{ route('courses.update', $course) }}" method="POST">
-        @method('PUT')
-
-        @include('courses._form')
-    </form>
-@endsection
+<x-layouts.app title="Edit Course"><h1>Edit Course</h1><form action="{{ route('courses.update', $course) }}" method="POST">@csrf @method('PUT')@include('courses._form')<button class="btn" type="submit">Edit Course</button> <a href="{{ route('courses.index') }}">Cancel</a></form></x-layouts.app>

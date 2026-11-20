@@ -8,7 +8,7 @@ use Illuminate\Validation\Rule;
 
 class StudentController extends Controller
 {
-    private function rules(?int $id = null): array
+    private function rules(?Student $student = null): array
     {
         return [
             'name' => 'required|string|max:255',
@@ -16,11 +16,11 @@ class StudentController extends Controller
                 'required',
                 'email',
                 'max:255',
-                Rule::unique('students', 'email')->ignore($id)
+                Rule::unique('students', 'email')->ignore($student?->id)
             ],
             'phone' => 'required|string|max:20',
-            'address' => 'required|string|max:500',
-            'date_of_birth' => 'required|date|before:today',
+            'address' => 'nullable|string|max:500',
+            'date_of_birth' => 'nullable|date',
         ];
     }
 
@@ -58,7 +58,7 @@ class StudentController extends Controller
 
     public function update(Request $request, Student $student)
     {
-        $data = $request->validate($this->rules($student->id));
+        $data = $request->validate($this->rules($student));
 
         $student->update($data);
 

@@ -1,0 +1,1 @@
+<footer class="footer">&copy; {{ date('Y') }} Training Institute Management System</footer>
