@@ -11,11 +11,11 @@ class CourseController extends Controller
     {
         return [
             'name' => 'required|string|max:255',
-            'description' => 'required|string',
+            'description' => 'nullable|string',
             'duration' => 'required|integer|min:1|max:104',
             'fee' => 'required|numeric|min:0|max:999999.99',
             'difficulty' => 'required|in:Easy,Medium,Hard',
-            'is_active' => 'sometimes|boolean',
+            'is_active' => 'boolean',
         ];
     }
 
